@@ -1,0 +1,6 @@
+export const SET_LOADING = "SET_LOADING";
+export const SET_CALL_LIST = "SET_CALL_LIST";
+export const UPDATE_CALL_DETAIL = "UPDATE_CALL_DETAIL";
+export const SET_CALL_DETAIL = "SET_CALL_DETAIL";
+export const RESET_CALL_LIST = "RESET_CALL_LIST";
+export const SET_ERROR = "SET_ERROR";
