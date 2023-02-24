@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
+import { Box, IconButton } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import LogoSvg from "../assets/images/Logo.svg";
-import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+
+import LogoSvg from "../../assets/images/Logo.svg";
 
 const useStyles = makeStyles({
   logo: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Header = ({ visible = true }) => {
+const Header = ({ goBack = true }) => {
   const navigate = useNavigate();
 
   const classes = useStyles();
@@ -23,10 +23,9 @@ const Header = ({ visible = true }) => {
       alignItems="center"
       position="relative"
       p={1}
-      mb={1}
       borderBottom={"1px solid #dddddd"}
     >
-      {visible && (
+      {goBack && (
         <IconButton
           sx={{ position: "absolute", left: 0 }}
           onClick={() => navigate(-1)}

@@ -69,10 +69,10 @@ const updateCall =
     const path = `${BASE_API}/activities/${id}`;
     try {
       setLoading(dispatch, true);
-      const { data } = await axios.patch(path, body);
+      await axios.patch(path, body);
       dispatch({
         type: UPDATE_CALL_DETAIL,
-        payload: { data, id },
+        payload: { id, body },
       });
     } catch (err) {
       dispatch({
@@ -86,10 +86,9 @@ const resetAllCalls = (dispatch) => async () => {
   const path = `${BASE_API}/reset`;
   try {
     setLoading(dispatch, true);
-    const { data } = await axios.patch(path);
+    await axios.patch(path);
     dispatch({
       type: RESET_CALL_LIST,
-      payload: data,
     });
   } catch (err) {
     dispatch({
@@ -118,7 +117,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         calls: state.calls.map((v) => ({ ...v, is_archived: false })),
-        message: action.payload,
         loading: false,
       };
     }
@@ -131,8 +129,7 @@ const reducer = (state, action) => {
     case UPDATE_CALL_DETAIL:
       return {
         ...state,
-        call: { ...state.call, is_archived: true },
-        message: action.payload.data,
+        call: { ...state.call, ...action.payload.body },
         loading: false,
       };
     case SET_ERROR:

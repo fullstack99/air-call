@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import FeedList from "./pages/FeedList";
-import FeedDetails from "./pages/FeedDetails";
+import ActivityFeed from "./pages/ActivityFeed";
+import ActivityDetail from "./pages/ActivityDetail";
 import { Provider as ContactContextProvider } from "./context/FeedContext";
 import "./App.css";
 
@@ -11,8 +11,8 @@ function App() {
     <ContactContextProvider>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<FeedList />} />
-          <Route path="/feed/:id" element={<FeedDetails />} />
+          <Route exact path="/" element={<ActivityFeed />} />
+          <Route path="/feed/:id" element={<ActivityDetail />} />
         </Routes>
       </BrowserRouter>
     </ContactContextProvider>

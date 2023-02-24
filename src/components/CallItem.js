@@ -6,7 +6,7 @@ import VoicemailIcon from "@mui/icons-material/Voicemail";
 import { Typography, Box } from "@mui/material";
 import moment from "moment";
 
-const CallItem = ({ call }) => {
+const CallItem = ({ call, format = "hh:ss a" }) => {
   const navigate = useNavigate();
   const icon = useMemo(() => {
     if (call.call_type === "missed") {
@@ -24,8 +24,13 @@ const CallItem = ({ call }) => {
       justifyContent="space-between"
       onClick={() => navigate(`/feed/${call.id}`)}
     >
-      <div>{icon}</div>
-      <Typography>{moment(call.created_at).format("hh:ss a")}</Typography>
+      <Box display={"flex"} alignItems="center">
+        <Box mr={1}>{icon}</Box>
+        <Typography textTransform={"capitalize"} variant="body2">
+          {call.call_type}
+        </Typography>
+      </Box>
+      <Typography>{moment(call.created_at).format(format)}</Typography>
     </Box>
   );
 };

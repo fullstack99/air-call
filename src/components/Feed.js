@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Button, Stack, Divider } from "@mui/material";
 import moment from "moment";
+
 import { Context as FeedContext } from "../context/FeedContext";
+import CallItem from "./CallItem";
 
-import CallItem from "../components/CallItem";
-
-const ArchiveList = ({ list }) => {
+const Feed = ({ list, reset = false }) => {
   const { resetAllCalls } = useContext(FeedContext);
 
   const handleReset = () => {
@@ -14,14 +14,15 @@ const ArchiveList = ({ list }) => {
 
   return (
     <>
-      {list.length > 0 && (
+      {reset && list.length > 0 && (
         <Button
           variant="contained"
           color="success"
           onClick={handleReset}
           sx={{ mb: 2 }}
+          fullWidth
         >
-          Reset calls
+          unarchive all calls
         </Button>
       )}
       {list.map((calls, index) => (
@@ -48,4 +49,4 @@ const ArchiveList = ({ list }) => {
   );
 };
 
-export default ArchiveList;
+export default Feed;
